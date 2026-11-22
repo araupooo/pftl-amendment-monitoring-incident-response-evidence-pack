@@ -1,0 +1,53 @@
+{
+ "counts": {
+  "amendments": {
+   "disabled": 39,
+   "enabled": 64,
+   "known": 103
+  },
+  "claims": {
+   "by_status": {
+    "SPECIFIED": 8,
+    "UNTESTABLE": 2,
+    "UNVERIFIED": 1,
+    "VERIFIED": 19
+   },
+   "total": 30
+  },
+  "drill": {
+   "passed": 29,
+   "total": 29
+  },
+  "findings": {
+   "by_severity": {
+    "HIGH": 3,
+    "INFO": 1,
+    "LOW": 3,
+    "MEDIUM": 5
+   },
+   "by_status": {
+    "MEASURED": 8,
+    "SPECIFIED": 4
+   },
+   "total": 12
+  },
+  "gaps": 7,
+  "monitor_checks": {
+   "passed": 16,
+   "total": 16
+  },
+  "risks": {
+   "by_severity": {
+    "HIGH": 3,
+    "INFO": 1,
+    "LOW": 4,
+    "MEDIUM": 6
+   },
+   "total": 14
+  }
+ },
+ "pinned_commit": "0085a1ff885d6a446369cf73a4430f75af22be55",
+ "probe_utc": "2026-11-22T23:30:49Z",
+ "validated_ledger": 8283007,
+ "verdict": "WATCHFUL, NOT BLIND \u2014 the activation machinery is sound and fully specified in code, but the public monitoring surface cannot see an activation approaching: no vote counts, no majority until it exists, and no documented policy."
+}

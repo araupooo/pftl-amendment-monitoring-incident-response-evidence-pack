@@ -1,0 +1,115 @@
+{
+ "counts": {
+  "by_severity": {
+   "HIGH": 3,
+   "INFO": 1,
+   "LOW": 3,
+   "MEDIUM": 5
+  },
+  "by_status": {
+   "MEASURED": 8,
+   "SPECIFIED": 4
+  },
+  "total": 12
+ },
+ "findings": [
+  {
+   "evidence": "Live feature RPC: 64 enabled of 101 supported. Pinned features.macro parse: 64 DefaultYes. VHS /vote/test: all 64 at ledger 86785, 2026-02-09T14:31:12Z. The normal two-week majority activation path has never run on this network.",
+   "id": "F-01",
+   "remediation": "Treat any future enablement that is not a single-amendment majority activation as an exceptional event; alert on any enabled-count change immediately.",
+   "severity": "HIGH",
+   "status": "MEASURED",
+   "title": "The enabled set is exactly the DefaultYes set, all enabled in one bulk event"
+  },
+  {
+   "evidence": "Live feature RPC returns only enabled/supported/name per amendment; no amendment carries a majority field. Vote counts (count/validations/threshold) are admin-only in AmendmentTable.cpp injectJson (lines 1000-1025). The earliest public signal of an approaching activation is the majority timestamp itself, which only appears once majority is already reached.",
+   "id": "F-02",
+   "remediation": "Poll feature every flag interval (256 ledgers, ~12 min) and alert the moment any majority field appears; do not rely on vote-count trends, which the public RPC cannot show.",
+   "severity": "HIGH",
+   "status": "MEASURED",
+   "title": "Activation approach is invisible from the public RPC"
+  },
+  {
+   "evidence": "VHS /amendments/info lists 103 known amendments; the node's feature table lists 101 supported. Batch is registered in features.macro line 51 but Supported::no; OrchardPrivacy has 0 matches anywhere in the pinned source (fixtures/source-hashes.json absence_checks). The history service registry is newer than the node.",
+   "id": "F-03",
+   "remediation": "Key monitoring to the node's own feature table, not the history service registry; flag any VHS-only name as drift, not as a pending activation.",
+   "severity": "HIGH",
+   "status": "MEASURED",
+   "title": "Registry drift: the history service knows amendments the node does not"
+  },
+  {
+   "evidence": "AmendmentTable.cpp needValidatedLedger only processes ledgers where (seq-1)/256 changes. From validated seq 8283007 the next flag ledger is 8283137, 130 ledgers (~371 s at the measured 2.857 s/ledger cadence).",
+   "id": "F-04",
+   "remediation": "Schedule activation checks on flag ledgers, not wall-clock time; the response window after a majority-hold expiry is at most one flag interval (~12 min).",
+   "severity": "MEDIUM",
+   "status": "MEASURED",
+   "title": "Activation can only land at flag ledgers (256-ledger boundaries)"
+  },
+  {
+   "evidence": "Post-fix rule (fixAmendmentMajorityCalc enabled live): votes > floor(trusted*67/100). At 25 trusted validators 17 votes are needed \u2014 equal to validation quorum 17. At 24 trusted still 17; at 20 trusted 14; at 17 trusted 12 (drill A-01, 8/8 threshold checks).",
+   "id": "F-05",
+   "remediation": "Alert when the trusted validator count drops below 25; recompute the activation bar on every UNL change.",
+   "severity": "MEDIUM",
+   "status": "SPECIFIED",
+   "title": "17 of 25 trusted votes are needed, and the bar falls as the trusted set shrinks"
+  },
+  {
+   "evidence": "features.macro lines 45-46: PF_AccountExclusion and PF_ValidatorVoteTracking are Supported::yes, VoteBehavior::DefaultNo. Live feature RPC: both enabled=false. The gates they control (ValidatorVoteTracker.cpp:162; Change.cpp:618-619) never fire.",
+   "id": "F-06",
+   "remediation": "Do not assume vote tracking or account exclusion is available; both need an explicit up-vote campaign plus a two-week majority hold to activate.",
+   "severity": "MEDIUM",
+   "status": "MEASURED",
+   "title": "Both PostFiat amendments are DefaultNo and disabled; the features they gate are inert"
+  },
+  {
+   "evidence": "AmendmentTable.cpp AmendmentState comment (lines 294-302): 'This is a one-way switch: once an amendment is enabled it can never be disabled, but it can be superseded by a subsequent amendment.' The only 'disable' match in the file is that comment (drill C-01).",
+   "id": "F-07",
+   "remediation": "Before any up-vote, require a superseding amendment to exist or be drafted; treat activation as irreversible in the runbook.",
+   "severity": "MEDIUM",
+   "status": "SPECIFIED",
+   "title": "Enablement is one-way: a bad activation cannot be rolled back, only superseded"
+  },
+  {
+   "evidence": "features.macro has 16 XRPL_RETIRE entries; all 16 are disabled live. VHS marks 15 names deprecated and omits FlowCross, which the macro retires. Retired names still appear in registries and RPC output.",
+   "id": "F-08",
+   "remediation": "Exclude retired names from activation watchlists; treat a retired name gaining a majority as a data error until proven otherwise.",
+   "severity": "MEDIUM",
+   "status": "MEASURED",
+   "title": "16 retired amendments are all disabled, and the history service disagrees on one"
+  },
+  {
+   "evidence": "Live feature RPC disabled set includes MPTokensV1, NonFungibleTokensV1, PermissionedDEX, PermissionedDomains, SingleAssetVault, LendingProtocol, XChainBridge and TokenEscrow (all DefaultNo). No amendment has been enabled since the 2026-02-09 bulk event.",
+   "id": "F-09",
+   "remediation": "Integrations must check enabled state per feature at runtime; never assume a named feature is live because the code ships it.",
+   "severity": "LOW",
+   "status": "MEASURED",
+   "title": "37 disabled amendments include major un-enabled features"
+  },
+  {
+   "evidence": "tx lookup for activation tx 0E373029EEF6AB43E24D5F1EAFBAEB80BBA9B94610BCE1A3D004101CCFAE7048 returns txnNotFound (error_code 29). The node's complete_ledgers range is 8200054-8283008, so ledger 86785 is outside retained history. VHS is the sole source for the activation ledger and date.",
+   "id": "F-10",
+   "remediation": "Archive activation evidence outside the node (VHS export + this pack); do not expect the public node to serve old activation proofs.",
+   "severity": "LOW",
+   "status": "MEASURED",
+   "title": "The 86785 activation transactions cannot be re-fetched from the public node"
+  },
+  {
+   "evidence": "SystemParameters.h:88 sets defaultAmendmentMajorityTime to 2 weeks. Config.cpp lines 870-898 parses amendment_majority_time (minutes/hours/days/weeks) and rejects values under 15 minutes. An operator config change can shrink the warning window from two weeks to 15 minutes.",
+   "id": "F-11",
+   "remediation": "Monitor the node's configured majority time as part of the watch; a sub-two-week setting is itself an alert.",
+   "severity": "LOW",
+   "status": "SPECIFIED",
+   "title": "The majority hold time is configurable down to 15 minutes"
+  },
+  {
+   "evidence": "outputs/postfiat_whitepaper.html (163,089 bytes) contains zero occurrences of 'amend'. No public document states which amendments the network intends to enable, in what order, or under what governance.",
+   "id": "F-12",
+   "remediation": "Publish an amendment policy (intended set, vote order, veto criteria) before the first live majority activation.",
+   "severity": "INFO",
+   "status": "SPECIFIED",
+   "title": "The whitepaper documents no amendment policy"
+  }
+ ],
+ "pinned_commit": "0085a1ff885d6a446369cf73a4430f75af22be55",
+ "validated_ledger": 8283007
+}
