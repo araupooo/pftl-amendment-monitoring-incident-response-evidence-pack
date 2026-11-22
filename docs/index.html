@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PFTL Amendment Monitoring and Incident-Response Evidence Pack</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:900px;margin:2em auto;padding:0 1em;color:#111;line-height:1.5}
+h1{font-size:1.6em}h2{font-size:1.2em;margin-top:1.5em}
+table{border-collapse:collapse;width:100%}th,td{border:1px solid #ccc;padding:4px 8px;text-align:left;font-size:.92em}
+code{background:#f2f2f2;padding:0 3px}
+.verdict{background:#fff3cd;border:1px solid #e0a800;padding:10px 14px}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:.9em}
+</style>
+</head>
+<body>
+<h1>PFTL Amendment Monitoring and Incident-Response Evidence Pack</h1>
+<p class="verdict"><strong>Verdict: WATCHFUL, NOT BLIND.</strong> The activation machinery is
+sound and fully specified in code, but the public monitoring surface cannot see an
+activation approaching: no vote counts, no majority until it exists, and no
+documented policy.</p>
+
+<h2>Headline numbers (live, 2026-11-22 23:30–23:39 UTC)</h2>
+<table>
+<tr><th>Measure</th><th>Value</th></tr>
+<tr><td>Node</td><td>postfiatd 1.0.9, network 2025, validated ledger 8,283,007, 21 peers</td></tr>
+<tr><td>Validation quorum / UNL</td><td>17 / 25 validators</td></tr>
+<tr><td>Amendments in node table</td><td>101 (64 enabled, 37 disabled)</td></tr>
+<tr><td>Amendments known to history service</td><td>103</td></tr>
+<tr><td>Amendments registered in pinned code</td><td>107</td></tr>
+<tr><td>Bulk activation</td><td>All 64 enabled at ledger 86785, 2026-02-09T14:31:12Z</td></tr>
+<tr><td>Amendments holding a majority now</td><td>0 (none vetoed)</td></tr>
+<tr><td>PostFiat amendments</td><td>PF_ValidatorVoteTracking, PF_AccountExclusion — both DefaultNo, disabled</td></tr>
+<tr><td>Ledger cadence</td><td>2.857 s/ledger (21 ledgers / 60 s)</td></tr>
+<tr><td>Next flag ledger</td><td>8283137 (~371 s from probe)</td></tr>
+<tr><td>Votes needed at UNL 25</td><td>17 (= validation quorum)</td></tr>
+<tr><td>Majority hold time</td><td>2 weeks (configurable down to 15 min)</td></tr>
+<tr><td>Lab drill</td><td>29/29 cases PASS (A 15, B 5, C 9)</td></tr>
+<tr><td>Monitor checks</td><td>16/16 PASS</td></tr>
+<tr><td>Findings</td><td>12 (3 HIGH / 5 MEDIUM / 3 LOW / 1 INFO; 8 MEASURED / 4 SPECIFIED)</td></tr>
+<tr><td>Claims</td><td>30 (19 VERIFIED / 8 SPECIFIED / 1 UNVERIFIED / 2 UNTESTABLE)</td></tr>
+<tr><td>Risks / gaps</td><td>14 risks / 7 gaps</td></tr>
+</table>
+
+<h2>Files</h2>
+<ul>
+<li><a href="decision-memo.md">docs/decision-memo.md</a> — verdict, reasoning, next steps</li>
+<li><a href="amendment-inventory.md">docs/amendment-inventory.md</a> — complete inventory (103 rows)</li>
+<li><a href="monitoring-spec.md">docs/monitoring-spec.md</a> — what to watch, thresholds, 8 alert rules</li>
+<li><a href="runbook-a.md">docs/runbook-a.md</a> — activation stalls</li>
+<li><a href="runbook-b.md">docs/runbook-b.md</a> — a bad amendment reaches majority</li>
+<li><a href="runbook-c.md">docs/runbook-c.md</a> — rollback decision under quorum pressure</li>
+<li><a href="claim-index.md">docs/claim-index.md</a> — 30 claims</li>
+<li><a href="risk-register.md">docs/risk-register.md</a> — 14 risks</li>
+<li><a href="gap-register.md">docs/gap-register.md</a> — 7 gaps</li>
+<li><a href="methodology.md">docs/methodology.md</a> — how every number was produced</li>
+<li><a href="citations.md">docs/citations.md</a> — pinned-source and live-source citations</li>
+<li><a href="evidence-index.md">docs/evidence-index.md</a> — every file and what it is</li>
+</ul>
+
+<h2>Reproduce</h2>
+<p class="mono">bash scripts/clean_reproduce.sh &nbsp;# exit 0 only if every check passes<br>
+bash scripts/verify_digests.sh &nbsp;&nbsp;&nbsp;# verifies SHA-256 digests of the pack</p>
+<p>Pinned postfiatd commit: <code>0085a1ff885d6a446369cf73a4430f75af22be55</code>
+(2026-10-10, PR #50 merge, v1.0.9). Read-only probes only; no transactions,
+no amendment votes, no live key material.</p>
+</body>
+</html>
