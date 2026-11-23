@@ -1,0 +1,27 @@
+--- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 1000-1025 ---
+    Json::Value& v,
+    uint256 const& id,
+    AmendmentState const& fs,
+    bool isAdmin,
+    std::lock_guard<std::mutex> const&) const
+{
+    if (!fs.name.empty())
+        v[jss::name] = fs.name;
+
+    v[jss::supported] = fs.supported;
+    if (!fs.enabled && isAdmin)
+    {
+        if (fs.vote == AmendmentVote::obsolete)
+            v[jss::vetoed] = "Obsolete";
+        else
+            v[jss::vetoed] = fs.vote == AmendmentVote::down;
+    }
+    v[jss::enabled] = fs.enabled;
+
+    if (!fs.enabled && lastVote_ && isAdmin)
+    {
+        auto const votesTotal = lastVote_->trustedValidations();
+        auto const votesNeeded = lastVote_->threshold();
+        auto const votesFor = lastVote_->votes(id);
+
+        v[jss::count] = votesFor;

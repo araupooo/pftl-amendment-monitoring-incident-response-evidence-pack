@@ -1,0 +1,41 @@
+--- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 324-342 ---
+
+    void
+    computeThreshold(int trustedValidations, Rules const& rules)
+    {
+        threshold_ = !rules_.enabled(fixAmendmentMajorityCalc)
+            ? std::max(
+                  1L,
+                  static_cast<long>(
+                      (trustedValidations_ *
+                       preFixAmendmentMajorityCalcThreshold.num) /
+                      preFixAmendmentMajorityCalcThreshold.den))
+            : std::max(
+                  1L,
+                  static_cast<long>(
+                      (trustedValidations_ *
+                       postFixAmendmentMajorityCalcThreshold.num) /
+                      postFixAmendmentMajorityCalcThreshold.den));
+    }
+
+--- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 359-378 ---
+    bool
+    passes(uint256 const& amendment) const
+    {
+        auto const& it = votes_.find(amendment);
+
+        if (it == votes_.end())
+            return false;
+
+        // Before this fix, it was possible for an amendment to activate with a
+        // percentage slightly less than 80% because we compared for "greater
+        // than or equal to" instead of strictly "greater than".
+        // One validator is an exception, otherwise it is not possible
+        // to gain majority.
+        if (!rules_.enabled(fixAmendmentMajorityCalc) ||
+            trustedValidations_ == 1)
+            return it->second >= threshold_;
+
+        return it->second > threshold_;
+    }
+

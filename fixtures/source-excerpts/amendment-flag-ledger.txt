@@ -1,0 +1,53 @@
+--- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 944-956 ---
+AmendmentTableImpl::needValidatedLedger(LedgerIndex ledgerSeq) const
+{
+    std::lock_guard lock(mutex_);
+
+    // Is there a ledger in which an amendment could have been enabled
+    // between these two ledger sequences?
+
+    return ((ledgerSeq - 1) / 256) != ((lastUpdateSeq_ - 1) / 256);
+}
+
+void
+AmendmentTableImpl::doValidatedLedger(
+    LedgerIndex ledgerSeq,
+--- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 958-995 ---
+    majorityAmendments_t const& majority)
+{
+    for (auto& e : enabled)
+        enable(e);
+
+    std::lock_guard lock(mutex_);
+
+    // Remember the ledger sequence of this update.
+    lastUpdateSeq_ = ledgerSeq;
+
+    // Since we have the whole list in `majority`, reset the time flag, even
+    // if it's currently set. If it's not set when the loop is done, then any
+    // prior unknown amendments have lost majority.
+    firstUnsupportedExpected_.reset();
+    for (auto const& [hash, time] : majority)
+    {
+        AmendmentState& s = add(hash, lock);
+
+        if (s.enabled)
+            continue;
+
+        if (!s.supported)
+        {
+            JLOG(j_.info()) << "Unsupported amendment " << hash
+                            << " reached majority at " << to_string(time);
+            if (!firstUnsupportedExpected_ || firstUnsupportedExpected_ > time)
+                firstUnsupportedExpected_ = time;
+        }
+    }
+    if (firstUnsupportedExpected_)
+        firstUnsupportedExpected_ = *firstUnsupportedExpected_ + majorityTime_;
+}
+
+void
+AmendmentTableImpl::trustChanged(hash_set<PublicKey> const& allTrusted)
+{
+    std::lock_guard lock(mutex_);
+    previousTrustedVotes_.trustChanged(allTrusted, lock);

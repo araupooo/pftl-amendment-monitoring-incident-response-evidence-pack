@@ -1,0 +1,53 @@
+--- src/xrpld/rpc/handlers/Feature1.cpp lines 40-70 ---
+        // ensure that the `feature` param is a string
+        if (!context.params[jss::feature].isString())
+        {
+            return rpcError(rpcINVALID_PARAMS);
+        }
+    }
+
+    bool const isAdmin = context.role == Role::ADMIN;
+    // Get majority amendment status
+    majorityAmendments_t majorities;
+
+    if (auto const valLedger = context.ledgerMaster.getValidatedLedger())
+        majorities = getMajorityAmendments(*valLedger);
+
+    auto& table = context.app.getAmendmentTable();
+
+    if (!context.params.isMember(jss::feature))
+    {
+        auto features = table.getJson(isAdmin);
+
+        for (auto const& [h, t] : majorities)
+        {
+            features[to_string(h)][jss::majority] =
+                t.time_since_epoch().count();
+        }
+
+        Json::Value jvReply = Json::objectValue;
+        jvReply[jss::features] = features;
+        return jvReply;
+    }
+
+--- src/xrpld/rpc/handlers/Feature1.cpp lines 76-95 ---
+        return rpcError(rpcBAD_FEATURE);
+
+    if (context.params.isMember(jss::vetoed))
+    {
+        if (!isAdmin)
+            return rpcError(rpcNO_PERMISSION);
+
+        if (context.params[jss::vetoed].asBool())
+            table.veto(feature);
+        else
+            table.unVeto(feature);
+    }
+
+    Json::Value jvReply = table.getJson(feature, isAdmin);
+    if (!jvReply)
+        return rpcError(rpcBAD_FEATURE);
+
+    auto m = majorities.find(feature);
+    if (m != majorities.end())
+        jvReply[jss::majority] = m->second.time_since_epoch().count();

@@ -1,0 +1,10 @@
+--- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 294-302 ---
+    /** If an amendment is down-voted, a server will not vote to enable it */
+    AmendmentVote vote = AmendmentVote::down;
+
+    /** Indicates that the amendment has been enabled.
+        This is a one-way switch: once an amendment is enabled
+        it can never be disabled, but it can be superseded by
+        a subsequent amendment.
+    */
+    bool enabled = false;

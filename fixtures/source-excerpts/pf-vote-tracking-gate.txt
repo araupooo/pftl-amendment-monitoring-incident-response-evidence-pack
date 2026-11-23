@@ -1,0 +1,12 @@
+--- src/xrpld/app/misc/ValidatorVoteTracker.cpp lines 155-165 ---
+            ++procIt;
+    }
+}
+
+bool
+ValidatorVoteTracker::isEnabled(Rules const& rules) const
+{
+    return rules.enabled(featurePF_ValidatorVoteTracking);
+}
+
+}  // namespace ripple

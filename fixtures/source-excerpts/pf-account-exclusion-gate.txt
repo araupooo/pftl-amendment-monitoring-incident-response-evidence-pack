@@ -1,0 +1,12 @@
+--- src/xrpld/app/tx/detail/Change.cpp lines 615-625 ---
+        view().update(voteStats);
+    }
+    
+    // Process exclusion list changes if PF_AccountExclusion is enabled
+    if (view().rules().enabled(featurePF_AccountExclusion))
+    {
+        bool hasExclusionAdd = ctx_.tx.isFieldPresent(sfExclusionAdd);
+        bool hasExclusionRemove = ctx_.tx.isFieldPresent(sfExclusionRemove);
+
+        if (hasExclusionAdd || hasExclusionRemove)
+        {

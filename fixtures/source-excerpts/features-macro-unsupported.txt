@@ -1,0 +1,20 @@
+--- include/xrpl/protocol/detail/features.macro lines 34-36 ---
+
+XRPL_FIX    (BatchInnerSigs,             Supported::no, VoteBehavior::DefaultNo)
+XRPL_FEATURE(LendingProtocol,            Supported::yes, VoteBehavior::DefaultNo)
+--- include/xrpl/protocol/detail/features.macro lines 38-42 ---
+XRPL_FIX    (IncludeKeyletFields,        Supported::yes, VoteBehavior::DefaultNo)
+XRPL_FEATURE(DynamicMPT,                 Supported::no,  VoteBehavior::DefaultNo)
+XRPL_FIX    (TokenEscrowV1,              Supported::yes, VoteBehavior::DefaultNo)
+XRPL_FIX    (DelegateV1_1,               Supported::no,  VoteBehavior::DefaultNo)
+XRPL_FIX    (PriceOracleOrder,           Supported::yes, VoteBehavior::DefaultNo)
+--- include/xrpl/protocol/detail/features.macro lines 50-54 ---
+XRPL_FEATURE(PermissionedDEX,            Supported::yes, VoteBehavior::DefaultNo)
+XRPL_FEATURE(Batch,                      Supported::no,  VoteBehavior::DefaultNo)
+XRPL_FEATURE(SingleAssetVault,           Supported::yes,  VoteBehavior::DefaultNo)
+XRPL_FEATURE(PermissionDelegation,       Supported::no,  VoteBehavior::DefaultNo)
+XRPL_FIX    (PayChanCancelAfter,         Supported::yes, VoteBehavior::DefaultNo)
+--- include/xrpl/protocol/detail/features.macro lines 66-68 ---
+// invariants expected to be included under it are complete.
+XRPL_FEATURE(InvariantsV1_1,             Supported::no,  VoteBehavior::DefaultNo)
+XRPL_FIX    (NFTokenPageLinks,           Supported::yes, VoteBehavior::DefaultYes)

@@ -1,0 +1,12 @@
+--- include/xrpl/protocol/Feature.h lines 105-115 ---
+#define XRPL_RETIRE(name) +1
+
+// This value SHOULD be equal to the number of amendments registered in
+// Feature.cpp. Because it's only used to reserve storage, and determine how
+// large to make the FeatureBitset, it MAY be larger. It MUST NOT be less than
+// the actual number of amendments. A LogicError on startup will verify this.
+static constexpr std::size_t numFeatures =
+    (0 +
+#include <xrpl/protocol/detail/features.macro>
+    );
+

@@ -1,0 +1,5 @@
+--- include/xrpl/protocol/detail/features.macro lines 44-47 ---
+XRPL_FIX    (AMMClawbackRounding,        Supported::yes, VoteBehavior::DefaultNo)
+XRPL_FEATURE(PF_AccountExclusion,        Supported::yes, VoteBehavior::DefaultNo)
+XRPL_FEATURE(PF_ValidatorVoteTracking,   Supported::yes, VoteBehavior::DefaultNo)
+XRPL_FEATURE(TokenEscrow,                Supported::yes, VoteBehavior::DefaultNo)

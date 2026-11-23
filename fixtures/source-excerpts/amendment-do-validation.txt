@@ -1,0 +1,27 @@
+--- src/xrpld/app/misc/detail/AmendmentTable.cpp lines 813-838 ---
+AmendmentTableImpl::doValidation(std::set<uint256> const& enabled) const
+{
+    // Get the list of amendments we support and do not
+    // veto, but that are not already enabled
+    std::vector<uint256> amendments;
+
+    {
+        std::lock_guard lock(mutex_);
+        amendments.reserve(amendmentMap_.size());
+        for (auto const& e : amendmentMap_)
+        {
+            if (e.second.supported && e.second.vote == AmendmentVote::up &&
+                (enabled.count(e.first) == 0))
+            {
+                amendments.push_back(e.first);
+                JLOG(j_.info()) << "Voting for amendment " << e.second.name;
+            }
+        }
+    }
+
+    if (!amendments.empty())
+        std::sort(amendments.begin(), amendments.end());
+
+    return amendments;
+}
+

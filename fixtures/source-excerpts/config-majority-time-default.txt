@@ -1,0 +1,6 @@
+--- src/xrpld/core/Config.h lines 246-250 ---
+
+    // Amendment majority time
+    std::chrono::seconds AMENDMENT_MAJORITY_TIME = defaultAmendmentMajorityTime;
+
+    // Thread pool configuration (0 = choose for me)

@@ -1,0 +1,12 @@
+--- src/libxrpl/protocol/Feature.cpp lines 74-84 ---
+// conditional code for amendments that were enabled after January 2018.
+// When that happens then the log message in Application.cpp should be
+// updated.
+//
+// Generally, amendments which introduce new features should be set as
+// "VoteBehavior::DefaultNo" whereas in rare cases, amendments that fix
+// critical bugs should be set as "VoteBehavior::DefaultYes", if off-chain
+// consensus is reached amongst reviewers, validator operators, and other
+// participants.
+
+class FeatureCollections

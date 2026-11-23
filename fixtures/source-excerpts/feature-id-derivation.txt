@@ -1,0 +1,12 @@
+--- src/libxrpl/protocol/Feature.cpp lines 260-270 ---
+    if (!i)
+    {
+        check(
+            features.size() < detail::numFeatures,
+            "More features defined than allocated.");
+
+        auto const f = sha512Half(Slice(name.data(), name.size()));
+
+        features.emplace_back(name, f);
+
+        auto const getAmendmentSupport = [=]() {
