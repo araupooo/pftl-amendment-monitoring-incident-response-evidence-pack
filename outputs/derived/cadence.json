@@ -1,0 +1,9 @@
+{
+ "seq_start": 8283150,
+ "time_start": "2026-Nov-22 23:38:04.080589 UTC",
+ "seq_end": 8283171,
+ "time_end": "2026-Nov-22 23:39:05.222596 UTC",
+ "interval_s": 60,
+ "ledgers": 21,
+ "cadence_s": 2.857142857142857
+}

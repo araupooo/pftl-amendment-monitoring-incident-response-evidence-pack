@@ -1,0 +1,223 @@
+{
+ "cases": [
+  {
+   "detail": "17 (want 17)",
+   "drill": "A",
+   "id": "A-01-25",
+   "label": "votes needed at 25 trusted validators",
+   "pass": true
+  },
+  {
+   "detail": "17 (want 17)",
+   "drill": "A",
+   "id": "A-01-24",
+   "label": "votes needed at 24 trusted validators",
+   "pass": true
+  },
+  {
+   "detail": "14 (want 14)",
+   "drill": "A",
+   "id": "A-01-20",
+   "label": "votes needed at 20 trusted validators",
+   "pass": true
+  },
+  {
+   "detail": "12 (want 12)",
+   "drill": "A",
+   "id": "A-01-17",
+   "label": "votes needed at 17 trusted validators",
+   "pass": true
+  },
+  {
+   "detail": "11 (want 11)",
+   "drill": "A",
+   "id": "A-01-16",
+   "label": "votes needed at 16 trusted validators",
+   "pass": true
+  },
+  {
+   "detail": "7 (want 7)",
+   "drill": "A",
+   "id": "A-01-10",
+   "label": "votes needed at 10 trusted validators",
+   "pass": true
+  },
+  {
+   "detail": "2 (want 2)",
+   "drill": "A",
+   "id": "A-01-2",
+   "label": "votes needed at 2 trusted validators",
+   "pass": true
+  },
+  {
+   "detail": "1 (want 1)",
+   "drill": "A",
+   "id": "A-01-1",
+   "label": "votes needed at 1 trusted validators",
+   "pass": true
+  },
+  {
+   "detail": "16 < 17 needed",
+   "drill": "A",
+   "id": "A-02",
+   "label": "16/25 votes does not pass at UNL 25",
+   "pass": true
+  },
+  {
+   "detail": "17 >= 17 needed",
+   "drill": "A",
+   "id": "A-03",
+   "label": "17/25 votes passes at UNL 25",
+   "pass": true
+  },
+  {
+   "detail": "doVoting gates both got-majority and enable actions on local up-vote",
+   "drill": "A",
+   "id": "A-04",
+   "label": "DefaultNo amendment never self-enables on majority",
+   "pass": true
+  },
+  {
+   "detail": "needValidatedLedger compares (seq-1)/256",
+   "drill": "A",
+   "id": "A-05",
+   "label": "flag-ledger rule present in pinned code",
+   "pass": true
+  },
+  {
+   "detail": "130 ledgers ahead (~371 s at 2.857 s/ledger)",
+   "drill": "A",
+   "id": "A-06",
+   "label": "next flag ledger 8283137 is 1 mod 256",
+   "pass": true
+  },
+  {
+   "detail": "",
+   "drill": "A",
+   "id": "A-07",
+   "label": "live: zero amendments hold a majority",
+   "pass": true
+  },
+  {
+   "detail": "256 ledgers x 2.857 s = 731 s",
+   "drill": "A",
+   "id": "A-08",
+   "label": "stall decision window is one flag interval (~13 min)",
+   "pass": true
+  },
+  {
+   "detail": "doValidatedLedger logs unsupported majorities (lines 981-982)",
+   "drill": "B",
+   "id": "B-01",
+   "label": "unsupported-majority log path present",
+   "pass": true
+  },
+  {
+   "detail": "doValidatedLedger: firstUnsupportedExpected_ + majorityTime_",
+   "drill": "B",
+   "id": "B-02",
+   "label": "expected-activation clock = majority time + 2 weeks",
+   "pass": true
+  },
+  {
+   "detail": "expected activation ~ledger 8706367 (~14.0 days, 1209540 s)",
+   "drill": "B",
+   "id": "B-03",
+   "label": "synthetic unsupported majority at ledger 8283007",
+   "pass": true
+  },
+  {
+   "detail": "[veto_amendments] section read at startup; AmendmentTable::veto exists",
+   "drill": "B",
+   "id": "B-04",
+   "label": "veto path present (config section + table.veto)",
+   "pass": true
+  },
+  {
+   "detail": "doValidation only votes for supported + up-voted amendments",
+   "drill": "B",
+   "id": "B-05",
+   "label": "veto excludes amendment from validator votes",
+   "pass": true
+  },
+  {
+   "detail": "1 match(es): line 299",
+   "drill": "C",
+   "id": "C-01",
+   "label": "no disable mechanism; only the 'can never be disabled' comment",
+   "pass": true
+  },
+  {
+   "detail": "AmendmentState comment: 'once an amendment is enabled it can never be disabled'",
+   "drill": "C",
+   "id": "C-02",
+   "label": "one-way switch documented in AmendmentState",
+   "pass": true
+  },
+  {
+   "detail": "quorum 17 vs 25 trusted",
+   "drill": "C",
+   "id": "C-03-25",
+   "label": "trusted 25 can reach validation quorum 17",
+   "pass": true
+  },
+  {
+   "detail": "quorum 17 vs 20 trusted",
+   "drill": "C",
+   "id": "C-03-20",
+   "label": "trusted 20 can reach validation quorum 17",
+   "pass": true
+  },
+  {
+   "detail": "quorum 17 vs 17 trusted",
+   "drill": "C",
+   "id": "C-03-17",
+   "label": "trusted 17 can reach validation quorum 17",
+   "pass": true
+  },
+  {
+   "detail": "quorum 17 vs 16 trusted",
+   "drill": "C",
+   "id": "C-03-16",
+   "label": "trusted 16 cannot reach validation quorum 17",
+   "pass": true
+  },
+  {
+   "detail": "quorum 17 vs 10 trusted",
+   "drill": "C",
+   "id": "C-03-10",
+   "label": "trusted 10 cannot reach validation quorum 17",
+   "pass": true
+  },
+  {
+   "detail": "17 > 14 > 12",
+   "drill": "C",
+   "id": "C-04",
+   "label": "activation bar falls as trusted set shrinks",
+   "pass": true
+  },
+  {
+   "detail": "AmendmentTable.cpp AmendmentState comment (line 299)",
+   "drill": "C",
+   "id": "C-05",
+   "label": "supersede is the documented post-activation remedy",
+   "pass": true
+  }
+ ],
+ "drills": {
+  "A": "activation stalls",
+  "B": "bad amendment majority",
+  "C": "rollback decision under quorum pressure"
+ },
+ "durations_s": {
+  "A": 0.0,
+  "B": 0.0,
+  "C": 0.0
+ },
+ "ledger_cadence_s": 2.857,
+ "passed": 29,
+ "total": 29,
+ "two_week_ledgers_approx": 423360,
+ "validated_ledger": 8283007,
+ "wall_s": 0.01
+}
