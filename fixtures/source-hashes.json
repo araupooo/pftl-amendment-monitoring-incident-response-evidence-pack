@@ -1,0 +1,258 @@
+{
+ "absence_checks": {
+  "OrchardPrivacy": {
+   "matches": []
+  }
+ },
+ "excerpts": {
+  "amendment-admin-vote-counts.txt": {
+   "anchor": "isAdmin",
+   "lines": 27,
+   "ranges": [
+    [
+     1000,
+     1025
+    ]
+   ],
+   "sha256": "b7ef2c08b5f45036d927d288a6832064d9fcdf5bc2b54aeb328df06694c1208a",
+   "source": "src/xrpld/app/misc/detail/AmendmentTable.cpp"
+  },
+  "amendment-do-validation.txt": {
+   "anchor": "doValidation",
+   "lines": 27,
+   "ranges": [
+    [
+     813,
+     838
+    ]
+   ],
+   "sha256": "e32cb522910cfbf8b8ebe7bb818e5943907263e2572bd34ee5783eb05e6f3601",
+   "source": "src/xrpld/app/misc/detail/AmendmentTable.cpp"
+  },
+  "amendment-do-voting.txt": {
+   "anchor": "tfGotMajority",
+   "lines": 58,
+   "ranges": [
+    [
+     884,
+     940
+    ]
+   ],
+   "sha256": "bf19ca73e8e8d2fd4ff571091967d8dc2b87c62afa676056ee45a20d8741f92b",
+   "source": "src/xrpld/app/misc/detail/AmendmentTable.cpp"
+  },
+  "amendment-flag-ledger.txt": {
+   "anchor": "needValidatedLedger",
+   "lines": 53,
+   "ranges": [
+    [
+     944,
+     956
+    ],
+    [
+     958,
+     995
+    ]
+   ],
+   "sha256": "c1688410a2a6a188c01205e06842eb9a669a151b95d5b1b857cce4599e9b97a8",
+   "source": "src/xrpld/app/misc/detail/AmendmentTable.cpp"
+  },
+  "amendment-one-way.txt": {
+   "anchor": "one-way switch",
+   "lines": 10,
+   "ranges": [
+    [
+     294,
+     302
+    ]
+   ],
+   "sha256": "cb6898cf64c325d62d8209c133eb2a11ad49404744171dd687dc18ca982b9931",
+   "source": "src/xrpld/app/misc/detail/AmendmentTable.cpp"
+  },
+  "amendment-threshold-calc.txt": {
+   "anchor": "computeThreshold",
+   "lines": 41,
+   "ranges": [
+    [
+     324,
+     342
+    ],
+    [
+     359,
+     378
+    ]
+   ],
+   "sha256": "4ad3217c32fc2ede8136db14afb1f2b1aed1874d769e797b747a72864160e0ac",
+   "source": "src/xrpld/app/misc/detail/AmendmentTable.cpp"
+  },
+  "application-amendment-table-setup.txt": {
+   "anchor": "make_AmendmentTable",
+   "lines": 25,
+   "ranges": [
+    [
+     1270,
+     1293
+    ]
+   ],
+   "sha256": "441d4271ee480a9f7d152287cbc695c726538758340a7781f50c0c6a86d46f5d",
+   "source": "src/xrpld/app/main/Application.cpp"
+  },
+  "config-majority-time-default.txt": {
+   "anchor": "defaultAmendmentMajorityTime",
+   "lines": 6,
+   "ranges": [
+    [
+     246,
+     250
+    ]
+   ],
+   "sha256": "0275ab302fbc100833195fc0f50d69c92d82f1e0b675f53c10fb283979c7ed1a",
+   "source": "src/xrpld/core/Config.h"
+  },
+  "config-majority-time-parse.txt": {
+   "anchor": "SECTION_AMENDMENT_MAJORITY_TIME",
+   "lines": 30,
+   "ranges": [
+    [
+     870,
+     898
+    ]
+   ],
+   "sha256": "8d263d279a2f74214fa4b80c6408d93af004528105449cf73f8878d52d2cb66b",
+   "source": "src/xrpld/core/detail/Config.cpp"
+  },
+  "feature-id-derivation.txt": {
+   "anchor": "sha512Half",
+   "lines": 12,
+   "ranges": [
+    [
+     260,
+     270
+    ]
+   ],
+   "sha256": "c1b6ca72f06cbde7bfa918e93b1972d7b2180c0a96568e676db4d40c1484ce87",
+   "source": "src/libxrpl/protocol/Feature.cpp"
+  },
+  "feature-num-features.txt": {
+   "anchor": "numFeatures",
+   "lines": 12,
+   "ranges": [
+    [
+     105,
+     115
+    ]
+   ],
+   "sha256": "46d5c7df396a3588a5461145b14f7fbaa98622c71cfc946be9799c8212cc92f6",
+   "source": "include/xrpl/protocol/Feature.h"
+  },
+  "feature-rpc-handler.txt": {
+   "anchor": "jss::majority",
+   "lines": 53,
+   "ranges": [
+    [
+     40,
+     70
+    ],
+    [
+     76,
+     95
+    ]
+   ],
+   "sha256": "d3bbf87841e816d28f75124a96a2f7b3cc4e7ba8a2e2d4ca1413d469ac8587c8",
+   "source": "src/xrpld/rpc/handlers/Feature1.cpp"
+  },
+  "feature-vote-behavior-comment.txt": {
+   "anchor": "VoteBehavior::DefaultNo",
+   "lines": 12,
+   "ranges": [
+    [
+     74,
+     84
+    ]
+   ],
+   "sha256": "b04e43168b7099af4bc528d0bab712d5c2251c45fd497faeaef6a42152b02789",
+   "source": "src/libxrpl/protocol/Feature.cpp"
+  },
+  "features-macro-PF-amendments.txt": {
+   "anchor": "PF_AccountExclusion",
+   "lines": 5,
+   "ranges": [
+    [
+     44,
+     47
+    ]
+   ],
+   "sha256": "5f02436896e46ee9154fd1567231943856935b2d8fe91f1bbd926176aac3194c",
+   "source": "include/xrpl/protocol/detail/features.macro"
+  },
+  "features-macro-unsupported.txt": {
+   "anchor": "Supported::no",
+   "lines": 20,
+   "ranges": [
+    [
+     34,
+     36
+    ],
+    [
+     38,
+     42
+    ],
+    [
+     50,
+     54
+    ],
+    [
+     66,
+     68
+    ]
+   ],
+   "sha256": "bbcc08013dbcfbfeb9e06124823c32ad9221bf230f7619f19b47422092c999ad",
+   "source": "include/xrpl/protocol/detail/features.macro"
+  },
+  "pf-account-exclusion-gate.txt": {
+   "anchor": "featurePF_AccountExclusion",
+   "lines": 12,
+   "ranges": [
+    [
+     615,
+     625
+    ]
+   ],
+   "sha256": "e4e98262679d8c8c5aed2e9cd3f1f05214530a25269d6a20abaf0599767e3cd7",
+   "source": "src/xrpld/app/tx/detail/Change.cpp"
+  },
+  "pf-vote-tracking-gate.txt": {
+   "anchor": "featurePF_ValidatorVoteTracking",
+   "lines": 11,
+   "ranges": [
+    [
+     155,
+     165
+    ]
+   ],
+   "sha256": "61f517f90ff9c78a49fdf492c3824fa68d62376922194439b3f3ef1bc06c5ed1",
+   "source": "src/xrpld/app/misc/ValidatorVoteTracker.cpp"
+  },
+  "system-parameters-thresholds.txt": {
+   "anchor": "postFixAmendmentMajorityCalcThreshold",
+   "lines": 13,
+   "ranges": [
+    [
+     78,
+     89
+    ]
+   ],
+   "sha256": "72a6243c3f76b7ab57f7adf21c215486bdf0852784cc2006e04fb1a5f3a1353a",
+   "source": "include/xrpl/protocol/SystemParameters.h"
+  }
+ },
+ "files": {
+  "include/xrpl/protocol/detail/features.macro": {
+   "bytes": 10479,
+   "git_blob_sha": "a88ebd1a492b9b5d658bde9c5f2835094536b244",
+   "lines": 165,
+   "sha256": "c564926fa081d8ef09f65976f66f8e712cecf58ee1c68e0abf58345eea00e772"
+  }
+ },
+ "pinned_commit": "0085a1ff885d6a446369cf73a4430f75af22be55"
+}
