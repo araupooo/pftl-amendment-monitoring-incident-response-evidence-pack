@@ -1,0 +1,193 @@
+{
+ "activation_date_bulk": "2026-02-09T14:31:12.000Z",
+ "activation_ledger_bulk": 86785,
+ "alerts": [
+  {
+   "level": "INFO",
+   "rule": "no amendment holds a majority; activation watch idle"
+  },
+  {
+   "level": "WATCH",
+   "rule": "Batch and OrchardPrivacy are known to VHS but absent from the node's supported table (Batch registered but unsupported; OrchardPrivacy absent from pinned code)"
+  },
+  {
+   "level": "WATCH",
+   "rule": "PF_ValidatorVoteTracking and PF_AccountExclusion are DefaultNo and disabled; the features they gate are inert"
+  },
+  {
+   "level": "INFO",
+   "rule": "public feature RPC exposes no vote counts (admin-only); activation approach is invisible until a majority timestamp appears"
+  }
+ ],
+ "amendments_disabled": 39,
+ "amendments_enabled": 64,
+ "amendments_total_known": 103,
+ "amendments_vetoed": 0,
+ "amendments_with_majority": 0,
+ "build_version": "1.0.9",
+ "checks": [
+  {
+   "check": "macro registrations == 107",
+   "detail": "107",
+   "pass": true
+  },
+  {
+   "check": "macro supported == RPC feature count",
+   "detail": "101 vs 101",
+   "pass": true
+  },
+  {
+   "check": "macro unsupported names == RPC-missing names",
+   "detail": "Batch,DynamicMPT,InvariantsV1_1,PermissionDelegation,fixBatchInnerSigs,fixDelegateV1_1",
+   "pass": true
+  },
+  {
+   "check": "every RPC amendment id == sha512Half(name)",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "VHS info count == 103",
+   "detail": "103",
+   "pass": true
+  },
+  {
+   "check": "VHS vote-test count == enabled count",
+   "detail": "64 vs 64",
+   "pass": true
+  },
+  {
+   "check": "enabled set == DefaultYes set",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "no amendment currently holds a majority",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "no amendment currently vetoed",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "all 64 activations at ledger 86785",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "all 64 activations at one timestamp",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "VL validator count == 25",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "validation quorum == 17",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "inventory rows == 103",
+   "detail": "103",
+   "pass": true
+  },
+  {
+   "check": "inventory enabled == 64",
+   "detail": "64",
+   "pass": true
+  },
+  {
+   "check": "inventory disabled == 39",
+   "detail": "39",
+   "pass": true
+  }
+ ],
+ "ledger_cadence_s": 3.0,
+ "ledgers_to_next_flag": 252,
+ "majority_hold_ledgers_approx": 403200,
+ "majority_hold_time_s": 1209600,
+ "majority_hold_time_weeks": 2,
+ "majority_rule": "post-fix: votes > floor(trusted*67/100); fixAmendmentMajorityCalc enabled",
+ "network_id": 2025,
+ "next_flag_ledger": 8283649,
+ "peers": 21,
+ "pinned_commit": "0085a1ff885d6a446369cf73a4430f75af22be55",
+ "seconds_to_next_flag_approx": 756.0,
+ "thresholds_by_trusted_count": [
+  {
+   "share_pct": 100.0,
+   "trusted_validators": 1,
+   "votes_needed": 1
+  },
+  {
+   "share_pct": 100.0,
+   "trusted_validators": 2,
+   "votes_needed": 2
+  },
+  {
+   "share_pct": 100.0,
+   "trusted_validators": 3,
+   "votes_needed": 3
+  },
+  {
+   "share_pct": 80.0,
+   "trusted_validators": 5,
+   "votes_needed": 4
+  },
+  {
+   "share_pct": 70.0,
+   "trusted_validators": 10,
+   "votes_needed": 7
+  },
+  {
+   "share_pct": 68.8,
+   "trusted_validators": 16,
+   "votes_needed": 11
+  },
+  {
+   "share_pct": 70.6,
+   "trusted_validators": 17,
+   "votes_needed": 12
+  },
+  {
+   "share_pct": 70.0,
+   "trusted_validators": 20,
+   "votes_needed": 14
+  },
+  {
+   "share_pct": 71.4,
+   "trusted_validators": 21,
+   "votes_needed": 15
+  },
+  {
+   "share_pct": 70.8,
+   "trusted_validators": 24,
+   "votes_needed": 17
+  },
+  {
+   "share_pct": 68.0,
+   "trusted_validators": 25,
+   "votes_needed": 17
+  },
+  {
+   "share_pct": 69.2,
+   "trusted_validators": 26,
+   "votes_needed": 18
+  },
+  {
+   "share_pct": 68.2,
+   "trusted_validators": 66,
+   "votes_needed": 45
+  }
+ ],
+ "unl_size": 25,
+ "validated_ledger": 8283397,
+ "validation_quorum": 17,
+ "vhs_known_validators": 66,
+ "votes_needed_at_unl_25": 17
+}

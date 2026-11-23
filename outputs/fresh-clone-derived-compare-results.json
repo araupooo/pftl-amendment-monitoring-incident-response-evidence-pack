@@ -1,0 +1,66 @@
+{
+ "checks": [
+  {
+   "check": "findings total unchanged",
+   "detail": "12 vs shipped 12",
+   "pass": true
+  },
+  {
+   "check": "claims total unchanged",
+   "detail": "30 vs shipped 30",
+   "pass": true
+  },
+  {
+   "check": "risks total unchanged",
+   "detail": "14 vs shipped 14",
+   "pass": true
+  },
+  {
+   "check": "gaps total unchanged",
+   "detail": "7 vs shipped 7",
+   "pass": true
+  },
+  {
+   "check": "amendments known unchanged",
+   "detail": "103 vs shipped 103",
+   "pass": true
+  },
+  {
+   "check": "amendments enabled unchanged",
+   "detail": "64 vs shipped 64",
+   "pass": true
+  },
+  {
+   "check": "drill still 29/29",
+   "detail": "29/29",
+   "pass": true
+  },
+  {
+   "check": "monitor checks all pass",
+   "detail": "16/16",
+   "pass": true
+  },
+  {
+   "check": "validated ledger advanced",
+   "detail": "fresh 8283397 vs shipped 8283007",
+   "pass": true
+  },
+  {
+   "check": "no amendment holds a majority in the fresh run",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "pinned commit unchanged",
+   "detail": "",
+   "pass": true
+  },
+  {
+   "check": "verdict unchanged",
+   "detail": "",
+   "pass": true
+  }
+ ],
+ "passed": 12,
+ "total": 12
+}

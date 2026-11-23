@@ -1,0 +1,31 @@
+PASS A-01-25 votes needed at 25 trusted validators — 17 (want 17)
+PASS A-01-24 votes needed at 24 trusted validators — 17 (want 17)
+PASS A-01-20 votes needed at 20 trusted validators — 14 (want 14)
+PASS A-01-17 votes needed at 17 trusted validators — 12 (want 12)
+PASS A-01-16 votes needed at 16 trusted validators — 11 (want 11)
+PASS A-01-10 votes needed at 10 trusted validators — 7 (want 7)
+PASS A-01-2 votes needed at 2 trusted validators — 2 (want 2)
+PASS A-01-1 votes needed at 1 trusted validators — 1 (want 1)
+PASS A-02 16/25 votes does not pass at UNL 25 — 16 < 17 needed
+PASS A-03 17/25 votes passes at UNL 25 — 17 >= 17 needed
+PASS A-04 DefaultNo amendment never self-enables on majority — doVoting gates both got-majority and enable actions on local up-vote
+PASS A-05 flag-ledger rule present in pinned code — needValidatedLedger compares (seq-1)/256
+PASS A-06 next flag ledger 8283649 is 1 mod 256 — 252 ledgers ahead (~756 s at 3.000 s/ledger)
+PASS A-07 live: zero amendments hold a majority
+PASS A-08 stall decision window is one flag interval (~13 min) — 256 ledgers x 3.000 s = 768 s
+PASS B-01 unsupported-majority log path present — doValidatedLedger logs unsupported majorities (lines 981-982)
+PASS B-02 expected-activation clock = majority time + 2 weeks — doValidatedLedger: firstUnsupportedExpected_ + majorityTime_
+PASS B-03 synthetic unsupported majority at ledger 8283397 — expected activation ~ledger 8686597 (~14.0 days, 1209600 s)
+PASS B-04 veto path present (config section + table.veto) — [veto_amendments] section read at startup; AmendmentTable::veto exists
+PASS B-05 veto excludes amendment from validator votes — doValidation only votes for supported + up-voted amendments
+PASS C-01 no disable mechanism; only the 'can never be disabled' comment — 1 match(es): line 299
+PASS C-02 one-way switch documented in AmendmentState — AmendmentState comment: 'once an amendment is enabled it can never be disabled'
+PASS C-03-25 trusted 25 can reach validation quorum 17 — quorum 17 vs 25 trusted
+PASS C-03-20 trusted 20 can reach validation quorum 17 — quorum 17 vs 20 trusted
+PASS C-03-17 trusted 17 can reach validation quorum 17 — quorum 17 vs 17 trusted
+PASS C-03-16 trusted 16 cannot reach validation quorum 17 — quorum 17 vs 16 trusted
+PASS C-03-10 trusted 10 cannot reach validation quorum 17 — quorum 17 vs 10 trusted
+PASS C-04 activation bar falls as trusted set shrinks — 17 > 14 > 12
+PASS C-05 supersede is the documented post-activation remedy — AmendmentTable.cpp AmendmentState comment (line 299)
+drill result: 29/29 cases PASS (A 15, B 5, C 9)
+drill wall time: 0.01 s (A 0.00 s, B 0.00 s, C 0.00 s)

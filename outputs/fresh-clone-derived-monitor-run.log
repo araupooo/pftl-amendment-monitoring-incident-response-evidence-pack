@@ -1,0 +1,19 @@
+PASS macro registrations == 107 — 107
+PASS macro supported == RPC feature count — 101 vs 101
+PASS macro unsupported names == RPC-missing names — Batch,DynamicMPT,InvariantsV1_1,PermissionDelegation,fixBatchInnerSigs,fixDelegateV1_1
+PASS every RPC amendment id == sha512Half(name)
+PASS VHS info count == 103 — 103
+PASS VHS vote-test count == enabled count — 64 vs 64
+PASS enabled set == DefaultYes set
+PASS no amendment currently holds a majority
+PASS no amendment currently vetoed
+PASS all 64 activations at ledger 86785
+PASS all 64 activations at one timestamp
+ledger cadence: 3.000 s/ledger (20 ledgers in 60 s, 2026-Nov-22 23:50:44.883443 UTC to 2026-Nov-22 23:51:45.963321 UTC)
+validated seq 8283397; next flag ledger 8283649 (252 ledgers, ~756 s)
+VL validators: 25 (UNL-flagged: 25)
+PASS VL validator count == 25
+PASS validation quorum == 17
+PASS inventory rows == 103 — 103
+PASS inventory enabled == 64 — 64
+PASS inventory disabled == 39 — 39

@@ -1,0 +1,5 @@
+clean_reproduce.sh fresh run: 2026-11-22T23:51:45Z
+workdir: /tmp/pftl-amend-repro.GqyKcN
+shipped validated ledger: 8283007
+fresh validated ledger: 8283397
+compare: 12/12 checks PASS
